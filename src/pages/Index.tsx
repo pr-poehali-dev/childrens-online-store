@@ -3,7 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 
 interface Product {
   id: number;
@@ -39,6 +44,9 @@ const products: Product[] = [
 export default function Index() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'winter' | 'spring' | 'summer' | 'autumn' | 'sale'>('all');
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+  const [orderForm, setOrderForm] = useState({ name: '', phone: '', email: '', address: '', comment: '' });
+  const { toast } = useToast();
 
   const filteredProducts = activeCategory === 'all' 
     ? products 
@@ -63,6 +71,30 @@ export default function Index() {
 
   const cartTotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const orderDetails = cart.map(item => 
+      `${item.product.name} x${item.quantity} = ${item.product.price * item.quantity}₽`
+    ).join('\n');
+    
+    toast({
+      title: "Заказ отправлен! ✨",
+      description: `Спасибо, ${orderForm.name}! Мы свяжемся с вами по телефону ${orderForm.phone}`,
+    });
+    
+    console.log('Новый заказ:', {
+      ...orderForm,
+      items: cart,
+      total: cartTotal,
+      orderDetails
+    });
+    
+    setIsOrderDialogOpen(false);
+    setCart([]);
+    setOrderForm({ name: '', phone: '', email: '', address: '', comment: '' });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-accent via-secondary to-muted">
@@ -123,7 +155,11 @@ export default function Index() {
                         <span>Итого:</span>
                         <span className="text-primary">{cartTotal} ₽</span>
                       </div>
-                      <Button size="lg" className="w-full bg-gradient-to-r from-primary to-accent">
+                      <Button 
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-primary to-accent"
+                        onClick={() => setIsOrderDialogOpen(true)}
+                      >
                         Оформить заказ ✨
                       </Button>
                     </div>
@@ -262,6 +298,88 @@ export default function Index() {
           </p>
         </div>
       </footer>
+
+      <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Оформление заказа ✨</DialogTitle>
+            <DialogDescription>
+              Заполните контактные данные, и мы свяжемся с вами для подтверждения заказа
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleOrderSubmit} className="space-y-4 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Имя *</Label>
+              <Input
+                id="name"
+                required
+                placeholder="Ваше имя"
+                value={orderForm.name}
+                onChange={(e) => setOrderForm({...orderForm, name: e.target.value})}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="phone">Телефон *</Label>
+              <Input
+                id="phone"
+                type="tel"
+                required
+                placeholder="+7 (999) 123-45-67"
+                value={orderForm.phone}
+                onChange={(e) => setOrderForm({...orderForm, phone: e.target.value})}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="example@mail.ru"
+                value={orderForm.email}
+                onChange={(e) => setOrderForm({...orderForm, email: e.target.value})}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="address">Адрес доставки *</Label>
+              <Input
+                id="address"
+                required
+                placeholder="Город, улица, дом, квартира"
+                value={orderForm.address}
+                onChange={(e) => setOrderForm({...orderForm, address: e.target.value})}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="comment">Комментарий к заказу</Label>
+              <Textarea
+                id="comment"
+                placeholder="Пожелания по доставке, размеры и т.д."
+                value={orderForm.comment}
+                onChange={(e) => setOrderForm({...orderForm, comment: e.target.value})}
+                rows={3}
+              />
+            </div>
+
+            <div className="border-t pt-4">
+              <div className="flex justify-between text-lg font-semibold mb-4">
+                <span>Сумма заказа:</span>
+                <span className="text-primary text-2xl">{cartTotal} ₽</span>
+              </div>
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-primary to-accent text-lg"
+              >
+                Подтвердить заказ 🎁
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
