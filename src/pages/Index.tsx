@@ -10,23 +10,34 @@ interface Product {
   name: string;
   price: number;
   oldPrice?: number;
-  category: 'boys' | 'girls' | 'sale';
+  category: 'winter' | 'spring' | 'summer' | 'autumn' | 'sale';
   image: string;
 }
 
 const products: Product[] = [
-  { id: 1, name: 'Платье принцессы', price: 2990, category: 'girls', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/ce9ab5dc-faea-4781-a388-5ad0eaa09eae.jpg' },
-  { id: 2, name: 'Футболка с динозавром', price: 1290, category: 'boys', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/6103551c-70d3-44a9-97ff-15f1b9ad7ac6.jpg' },
-  { id: 3, name: 'Юбка с единорогом', price: 1890, oldPrice: 2890, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/ce9ab5dc-faea-4781-a388-5ad0eaa09eae.jpg' },
-  { id: 4, name: 'Комбинезон супергероя', price: 3490, category: 'boys', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/6103551c-70d3-44a9-97ff-15f1b9ad7ac6.jpg' },
-  { id: 5, name: 'Свитер с бабочками', price: 2190, oldPrice: 3190, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/ce9ab5dc-faea-4781-a388-5ad0eaa09eae.jpg' },
-  { id: 6, name: 'Штаны с машинками', price: 1590, category: 'boys', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/6103551c-70d3-44a9-97ff-15f1b9ad7ac6.jpg' },
-  { id: 7, name: 'Платье балерины', price: 3290, category: 'girls', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/ce9ab5dc-faea-4781-a388-5ad0eaa09eae.jpg' },
-  { id: 8, name: 'Куртка космонавта', price: 4490, oldPrice: 5990, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/6103551c-70d3-44a9-97ff-15f1b9ad7ac6.jpg' },
+  { id: 1, name: 'Зимняя куртка с снежинками', price: 4990, category: 'winter', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/40a2ed5e-abb3-4ae9-b83e-2ccbf97f192c.jpg' },
+  { id: 2, name: 'Теплый свитер со снеговиком', price: 2790, category: 'winter', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/40a2ed5e-abb3-4ae9-b83e-2ccbf97f192c.jpg' },
+  { id: 3, name: 'Шапка и шарф с оленями', price: 1490, category: 'winter', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/40a2ed5e-abb3-4ae9-b83e-2ccbf97f192c.jpg' },
+  { id: 4, name: 'Комбинезон-снеговик', price: 5490, oldPrice: 6990, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/40a2ed5e-abb3-4ae9-b83e-2ccbf97f192c.jpg' },
+  
+  { id: 5, name: 'Весенняя ветровка с цветами', price: 3290, category: 'spring', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e10354df-a39e-4e62-868d-203be80f3746.jpg' },
+  { id: 6, name: 'Платье с бабочками', price: 2990, category: 'spring', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e10354df-a39e-4e62-868d-203be80f3746.jpg' },
+  { id: 7, name: 'Легкая кофточка весенняя', price: 1990, category: 'spring', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e10354df-a39e-4e62-868d-203be80f3746.jpg' },
+  { id: 8, name: 'Джинсы с вышивкой цветов', price: 2490, oldPrice: 3490, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e10354df-a39e-4e62-868d-203be80f3746.jpg' },
+  
+  { id: 9, name: 'Летняя футболка с мороженым', price: 1290, category: 'summer', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e2103b6a-1665-4c3d-b6ea-4823575b0d0c.jpg' },
+  { id: 10, name: 'Пляжные шорты с пальмами', price: 1590, category: 'summer', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e2103b6a-1665-4c3d-b6ea-4823575b0d0c.jpg' },
+  { id: 11, name: 'Панамка от солнца', price: 890, category: 'summer', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e2103b6a-1665-4c3d-b6ea-4823575b0d0c.jpg' },
+  { id: 12, name: 'Летнее платье с арбузами', price: 2190, oldPrice: 2990, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/e2103b6a-1665-4c3d-b6ea-4823575b0d0c.jpg' },
+  
+  { id: 13, name: 'Осенний свитер с листьями', price: 2790, category: 'autumn', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/32072e04-64ae-46c0-86fd-fb9d40e7f006.jpg' },
+  { id: 14, name: 'Джинсы осенние утепленные', price: 2490, category: 'autumn', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/32072e04-64ae-46c0-86fd-fb9d40e7f006.jpg' },
+  { id: 15, name: 'Худи с тыквами', price: 2990, category: 'autumn', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/32072e04-64ae-46c0-86fd-fb9d40e7f006.jpg' },
+  { id: 16, name: 'Осенний плащ дождевик', price: 3490, oldPrice: 4490, category: 'sale', image: 'https://cdn.poehali.dev/projects/6a7e589a-8a58-4854-8bdb-688da7ee88a3/files/32072e04-64ae-46c0-86fd-fb9d40e7f006.jpg' },
 ];
 
 export default function Index() {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'boys' | 'girls' | 'sale'>('all');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'winter' | 'spring' | 'summer' | 'autumn' | 'sale'>('all');
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
 
   const filteredProducts = activeCategory === 'all' 
@@ -159,19 +170,35 @@ export default function Index() {
             </Button>
             <Button 
               size="lg"
-              variant={activeCategory === 'boys' ? 'default' : 'outline'}
-              onClick={() => setActiveCategory('boys')}
+              variant={activeCategory === 'winter' ? 'default' : 'outline'}
+              onClick={() => setActiveCategory('winter')}
               className="rounded-full text-lg px-8"
             >
-              🚀 Для мальчиков
+              ❄️ Зима
             </Button>
             <Button 
               size="lg"
-              variant={activeCategory === 'girls' ? 'default' : 'outline'}
-              onClick={() => setActiveCategory('girls')}
+              variant={activeCategory === 'spring' ? 'default' : 'outline'}
+              onClick={() => setActiveCategory('spring')}
               className="rounded-full text-lg px-8"
             >
-              🦄 Для девочек
+              🌸 Весна
+            </Button>
+            <Button 
+              size="lg"
+              variant={activeCategory === 'summer' ? 'default' : 'outline'}
+              onClick={() => setActiveCategory('summer')}
+              className="rounded-full text-lg px-8"
+            >
+              ☀️ Лето
+            </Button>
+            <Button 
+              size="lg"
+              variant={activeCategory === 'autumn' ? 'default' : 'outline'}
+              onClick={() => setActiveCategory('autumn')}
+              className="rounded-full text-lg px-8"
+            >
+              🍂 Осень
             </Button>
             <Button 
               size="lg"
